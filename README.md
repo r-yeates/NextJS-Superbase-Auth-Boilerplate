@@ -153,15 +153,6 @@ export default function ClientComponent() {
 }
 ```
 
-## Deploying to Vercel
-
-```bash
-npm i -g vercel
-vercel
-```
-
-Add your four environment variables in the Vercel dashboard (or via `vercel env add`), and update `NEXT_PUBLIC_SITE_URL` and your Supabase redirect URLs to your production domain.
-
 ## Customisation
 
 - **Styles** — Tailwind CSS; edit `app/globals.css` or individual page files
