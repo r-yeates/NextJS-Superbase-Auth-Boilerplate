@@ -15,7 +15,7 @@ A clean, production-ready authentication starter using Next.js (App Router) and 
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/r-yeates/Superbase-Auth-Boilerplate
+git clone https://github.com/r-yeates/NextJS-Superbase-Auth-Boilerplate
 npm install
 ```
 
