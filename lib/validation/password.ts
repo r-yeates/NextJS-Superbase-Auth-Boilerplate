@@ -21,8 +21,6 @@ export interface PasswordRule {
 export interface PasswordRequirements {
   /** Minimum password length */
   minLength: number
-  /** Maximum password length (bcrypt silently truncates at 72 bytes) */
-  maxLength?: number
   /** Require at least one uppercase letter */
   requireUppercase: boolean
   /** Require at least one lowercase letter */
@@ -43,11 +41,10 @@ export interface PasswordRequirements {
  */
 export const PASSWORD_CONFIG: PasswordRequirements = {
   minLength: 6,
-  maxLength: 72,
   requireUppercase: true,
-  requireLowercase: true,
+  requireLowercase: false,
   requireNumber: true,
-  requireSpecialChar: true,
+  requireSpecialChar: false,
   specialCharacters: '!@#$£%^&*()_+-=[]{}|;:,.<>?',
 }
 
@@ -67,16 +64,6 @@ export function getPasswordRules(config: PasswordRequirements = PASSWORD_CONFIG)
     validate: (password) => password.length >= config.minLength,
     errorMessage: `Password must be at least ${config.minLength} characters long`,
   })
-
-  // Maximum length rule (bcrypt truncates at 72 bytes, so cap here)
-  if (config.maxLength) {
-    rules.push({
-      id: 'maxLength',
-      label: `No more than ${config.maxLength} characters`,
-      validate: (password) => password.length <= config.maxLength!,
-      errorMessage: `Password must be no more than ${config.maxLength} characters long`,
-    })
-  }
 
   // Uppercase letter rule
   if (config.requireUppercase) {
